@@ -19,12 +19,28 @@
       text-align: justify;
       line-height: 1.6;
     }
+    button {
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      margin: 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e658a6;
+    }
   </style>
 </head>
 <body>
+
   <h1>Leia a carta depois role a página para baixo 💌</h1>
 
-  <audio autoplay controls>
+  <button onclick="document.getElementById('musica').play()">Clique para ouvir a mensagem 🎵</button>
+
+  <audio id="musica">
     <source src="https://drive.google.com/uc?export=download&id=1unCO8oeaxyJpUJgZqZr-XHGRsUDr5s9x" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
@@ -48,3 +64,4 @@
   </div>
 </body>
 </html>
+
