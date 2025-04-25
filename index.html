@@ -38,12 +38,24 @@
 
   <h1>Leia a carta depois role a página para baixo 💌</h1>
 
-  <button onclick="document.getElementById('musica').play()">Clique para ouvir a mensagem 🎵</button>
+  <button onclick="tocarAudio()">Clique para ouvir a mensagem 🎵</button>
 
   <audio id="musica">
     <source src="https://drive.google.com/uc?export=download&id=1unCO8oeaxyJpUJgZqZr-XHGRsUDr5s9x" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
+
+  <script>
+    function tocarAudio() {
+      const audio = document.getElementById("musica");
+      audio.play().then(() => {
+        console.log("Áudio tocando...");
+      }).catch((error) => {
+        console.error("Erro ao tentar tocar o áudio:", error);
+        alert("Clique novamente para ouvir a música.");
+      });
+    }
+  </script>
 
   <div class="spacer"></div>
 
@@ -64,4 +76,3 @@
   </div>
 </body>
 </html>
-
