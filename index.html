@@ -9,8 +9,8 @@
       text-align: center;
       padding: 40px;
     }
-    .spacer {
-      height: 2000px; /* espaço grande para rolagem */
+    .espaco {
+      height: 2500px;
     }
     .mensagem {
       max-width: 800px;
@@ -19,43 +19,43 @@
       text-align: justify;
       line-height: 1.6;
     }
-    button {
-      font-size: 1.1rem;
-      padding: 12px 24px;
-      margin: 20px;
-      border-radius: 10px;
-      border: none;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #e658a6;
-    }
   </style>
 </head>
 <body>
 
-  <h1>Leia a carta depois role a página para baixo 💌</h1>
+  <h1>Esta mensagem toca música automaticamente 🎵</h1>
 
-  <button onclick="tocarAudio()">Clique aqui 🎵</button>
-
-  <audio id="musica">
-  <source src="Emicida - Hoje cedo (Feat. Pitty).mp3" type="audio/mpeg">
-  Seu navegador não suporta áudio.
-</audio>
-
+  <audio id="musica" autoplay muted playsinline>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
 
   <script>
-    function tocarAudio() {
-      const audio = document.getElementById("musica");
-      audio.play().catch(() => {
-        alert("Clique novamente para ouvir a música.");
-      });
-    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('musica');
+      audio.muted = false;
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log("Música tocando automaticamente!");
+        }).catch((error) => {
+          console.warn("O navegador bloqueou o autoplay. Clique em qualquer lugar para ativar o som.");
+        });
+      }
+    });
+
+    // Libera o áudio se o navegador bloquear
+    document.body.addEventListener("click", () => {
+      const audio = document.getElementById('musica');
+      if (audio.paused) {
+        audio.muted = false;
+        audio.play();
+      }
+    });
   </script>
 
-  <div class="spacer"></div>
+  <div class="espaco"></div>
 
   <div class="mensagem">
     <p>Agora que você leu a carta de 12/06/2014, eu acho que entendi o que é um amor de verdade. A carta é de 11 anos atrás, mas parece que ela foi escrita hoje. Com 4 meses e com 11 anos, esse amor só aumentou — e eu tenho certeza que vai aumentar muito ainda.</p>
